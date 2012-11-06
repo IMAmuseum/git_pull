@@ -1,0 +1,4 @@
+name = Git Pull
+description = Conducts a 'git pull' on the configured repository and branch when notified of a push by GitHub's Post Receive hook
+version = 0.1
+core = 7.x

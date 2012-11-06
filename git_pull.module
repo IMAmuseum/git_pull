@@ -1,0 +1,14 @@
+<?php
+
+function git_pull_menu() {
+	$items['github/update'] = array(
+		'page callback' => 'git_pull_receive_github_update',
+		'type' => MENU_CALLBACK
+	);
+
+	return $items;
+}
+
+function git_pull_receive_github_update() {
+	dpm($_POST);
+}
