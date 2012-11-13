@@ -44,14 +44,22 @@ function git_pull_admin_form($form, &$form_state) {
 }
 
 function git_pull_receive_github_update() {
-	// log output
-	watchdog('git_pull', 'post processed, pulling for git.');
+	// retrieve paths
 	$git_path = variable_get('git_pull_git_path');
 	$repo_path = variable_get('git_pull_repo_path');
+	// execute pull
 	if (!empty($git_path) && !empty($repo_path)) {
 		$output = shell_exec("cd $repo_path; $git_path pull;");
-		watchdog('git_pull', $output);
+		preg_match('/^Already up-to-date|^Updating \w+\.\.\w+/m', $output, $matches);
+		if (count($matches) > 0) {
+			watchdog('git_pull', 'Post processed, pulling for git: '$matches[0]);
+		}
+		else {
+			watchdog('git_pull', "Encountered an error when trying to git pull:\n$output");
+		}
 	}
-	
+	else {
+		watchdog('git_pull', 'Post recieved, but module configuration not complete');
+	}
 	return;
 }
