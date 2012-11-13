@@ -52,7 +52,7 @@ function git_pull_receive_github_update() {
 		$output = shell_exec("cd $repo_path; $git_path pull;");
 		preg_match('/^Already up-to-date|^Updating \w+\.\.\w+/m', $output, $matches);
 		if (count($matches) > 0) {
-			watchdog('git_pull', 'Post processed, pulling for git: $matches[0]');
+			watchdog('git_pull', "Post processed, pulling for git: $matches[0]");
 		}
 		else {
 			watchdog('git_pull', "Encountered an error when trying to git pull:\n$output");
