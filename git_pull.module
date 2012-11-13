@@ -11,5 +11,6 @@ function git_pull_menu() {
 }
 
 function git_pull_receive_github_update() {
+	// log output
 	dpm($_POST);
 }
