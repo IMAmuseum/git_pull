@@ -7,10 +7,44 @@ function git_pull_menu() {
 		'access callback' => TRUE
 	);
 
+	$items['admin/config/development/git_pull'] = array(
+		'title' => 'Git Pull',
+		'description' => 'Configuration for the Git Pull module.',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('git_pull_admin_form'),
+		'access arguments' => array('administer site configuration'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+
 	return $items;
+}
+
+function git_pull_admin_form($form, &$form_state) {
+	$form['git_pull_git_path'] = array(
+		'#type' => 'textfield',
+		'#title' => 'Git Path',
+		'#default_value' => variable_get('git_pull_git_path'),
+		'#size' => 40,
+		'#maxlength' => 255,
+		'#required' => TRUE,
+		'#description' => 'The full path to your git executable.'
+	);
+
+	$form['git_pull_repo_path'] = array(
+		'#type' => 'textfield',
+		'#title' => 'Repository Path',
+		'#default_value' => variable_get('git_pull_repo_path'),
+		'#size' => 40,
+		'#maxlength' => 255,
+		'#required' => TRUE,
+		'#description' => 'The full path to your git repository.'
+	);
+
+	return system_settings_form($form);
 }
 
 function git_pull_receive_github_update() {
 	// log output
-	dpm($_POST);
+	watchdog('git_pull', 'post processed');
+	return;
 }
