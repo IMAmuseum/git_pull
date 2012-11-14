@@ -6,7 +6,7 @@ Helpful for when you have a non-technical person helping with the code or theme,
 
 ## Directions
 
-Install and enable the module, then go to 'admin/config/delvelopment/git_pull' to set your Git path and Repository path.
+Install and enable the module, then go to 'admin/config/development/git_pull' to set your Git path and Repository path.
 
 Next, go to GitHub and configure '<siteURL>/github/update' as your WebHook URL, under Service Hooks in the repository admin.  Replace <siteURL> above with your site's URL. 
 
